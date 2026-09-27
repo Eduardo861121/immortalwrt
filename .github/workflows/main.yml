@@ -40,6 +40,10 @@ jobs:
           make defconfig
           ls -la package/OpenAppFilter
 
+      - name: 预编译host依赖环境
+        run: |
+          make prereq
+
       - name: 编译 oaf 插件
         run: |
           make package/oaf/compile -j$(nproc) V=s
