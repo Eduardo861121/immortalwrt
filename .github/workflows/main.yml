@@ -35,13 +35,14 @@ jobs:
           echo "CONFIG_TARGET_mediatek=y" >> .config
           echo "CONFIG_TARGET_mediatek_filogic=y" >> .config
           echo "CONFIG_TARGET_SUBTARGET_mt7981=y" >> .config
+          echo "CONFIG_PACKAGE_oaf=m" >> .config
           echo "CONFIG_PACKAGE_luci-app-oaf=m" >> .config
           make defconfig
           ls -la package/OpenAppFilter
 
-      - name: 只编译OpenAppFilter插件
+      - name: 编译 oaf 插件
         run: |
-          make package/OpenAppFilter/compile -j$(nproc) V=s
+          make package/oaf/compile -j$(nproc) V=s
 
       - name: 上传ipk包
         uses: actions/upload-artifact@v4
